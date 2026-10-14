@@ -1,0 +1,62 @@
+spring:
+  application:
+    name: pos-system
+
+  datasource:
+    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:nehapos}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:prashanth}
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: prashanthrao115@gmail.com
+    password: doodiechinnu191246
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+  devtools:
+    livereload:
+      enabled: true
+
+server:
+  port: 5000
+
+razorpay:
+  api:
+    key: rzp_test_TixyEprSNfs4Y9
+    secret: ebzNQAhvHZKnArMLmIUBKZpF
+
+
+stripe:
+  api:
+    key: provide your stripe api key
+
+gemini:
+  api:
+    key: ${GEMINI_API_KEY:}
+    model: ${GEMINI_MODEL:gemini-3.8-flash}
+    url: ${GEMINI_API_URL:https://generativelanguage.googleapis.com/v1beta/models}
+
+app:
+  frontend:
+    reset-url: http://localhost:5173/auth/reset-password?token=
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql: TRACE
