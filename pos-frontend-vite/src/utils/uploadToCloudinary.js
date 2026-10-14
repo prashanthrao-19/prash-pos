@@ -1,12 +1,13 @@
 export const uploadToCloudinary = async (pics) => {
 
-    const cloud_name="dxoqwusir"
+    const cloud_name = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME || "dxoqwusir";
+    const upload_preset = import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET || "ml_default";
     
     if (pics) {
       
       const data = new FormData();
       data.append("file", pics);
-      data.append("upload_preset", "ml_default");
+      data.append("upload_preset", upload_preset);
       data.append("cloud_name", cloud_name);
   
       const res = await 
