@@ -56,6 +56,7 @@ public class SecurityConfig {
 						"http://localhost:3000",
 						"http://localhost:5173",
 						"https://*.vercel.app",
+						"https://prash-n6bme0eps-prashanths-projects-4b230579.vercel.app",
 						"https://zosh-pos.vercel.app",
 						"https://pos-sytem-bcs6.vercel.app"
 				));
