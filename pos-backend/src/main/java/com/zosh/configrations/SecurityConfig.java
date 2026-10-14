@@ -52,9 +52,10 @@ public class SecurityConfig {
 			@Override
 			public CorsConfiguration getCorsConfiguration(HttpServletRequest request) {
 				CorsConfiguration cfg = new CorsConfiguration();
-				cfg.setAllowedOrigins(Arrays.asList(
+				cfg.setAllowedOriginPatterns(Arrays.asList(
 						"http://localhost:3000",
 						"http://localhost:5173",
+						"https://*.vercel.app",
 						"https://zosh-pos.vercel.app",
 						"https://pos-sytem-bcs6.vercel.app"
 				));

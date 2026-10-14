@@ -3,10 +3,10 @@ spring:
     name: pos-system
 
   datasource:
-    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:nehapos}
+    url: ${SPRING_DATASOURCE_URL:jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:nehapos}}
     driver-class-name: com.mysql.cj.jdbc.Driver
-    username: ${DB_USERNAME:root}
-    password: ${DB_PASSWORD:prashanth}
+    username: ${SPRING_DATASOURCE_USERNAME:${DB_USERNAME:root}}
+    password: ${SPRING_DATASOURCE_PASSWORD:${DB_PASSWORD:prashanth}}
 
   jpa:
     hibernate:
@@ -14,10 +14,10 @@ spring:
     show-sql: true
 
   mail:
-    host: smtp.gmail.com
-    port: 587
-    username: prashanthrao115@gmail.com
-    password: doodiechinnu191246
+    host: ${MAIL_HOST:smtp.gmail.com}
+    port: ${MAIL_PORT:587}
+    username: ${MAIL_USERNAME:prashanthrao115@gmail.com}
+    password: ${MAIL_PASSWORD:doodiechinnu191246}
     properties:
       mail:
         smtp:
@@ -30,17 +30,20 @@ spring:
       enabled: true
 
 server:
-  port: 5000
+  port: ${PORT:5000}
 
 razorpay:
   api:
-    key: rzp_test_TixyEprSNfs4Y9
-    secret: ebzNQAhvHZKnArMLmIUBKZpF
-
+    key: ${RAZORPAY_API_KEY:rzp_test_TixyEprSNfs4Y9}
+    secret: ${RAZORPAY_API_SECRET:ebzNQAhvHZKnArMLmIUBKZpF}
+  callback:
+    base-url: ${FRONTEND_URL:http://localhost:5173}
 
 stripe:
   api:
-    key: provide your stripe api key
+    key: ${STRIPE_API_KEY:provide your stripe api key}
+  publishable:
+    key: ${STRIPE_PUBLISHABLE_KEY:}
 
 gemini:
   api:
@@ -50,7 +53,7 @@ gemini:
 
 app:
   frontend:
-    reset-url: http://localhost:5173/auth/reset-password?token=
+    reset-url: ${FRONTEND_RESET_URL:${FRONTEND_URL:http://localhost:5173}/auth/reset-password?token=}
 
 logging:
   level:
