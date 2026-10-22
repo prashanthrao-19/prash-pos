@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/super-admin/subscription-plans")
+@RequestMapping({"/api/super-admin/subscription-plans", "/api/subscription-plans"})
 @RequiredArgsConstructor
 public class SubscriptionPlanController {
 

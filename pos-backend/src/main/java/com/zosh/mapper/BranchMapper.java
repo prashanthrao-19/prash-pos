@@ -1,6 +1,5 @@
 package com.zosh.mapper;
 
-
 import com.zosh.modal.Branch;
 import com.zosh.modal.Store;
 import com.zosh.payload.dto.BranchDTO;
@@ -8,6 +7,9 @@ import com.zosh.payload.dto.BranchDTO;
 public class BranchMapper {
 
     public static BranchDTO toDto(Branch branch) {
+        if (branch == null) {
+            return null;
+        }
         return BranchDTO.builder()
                 .id(branch.getId())
                 .name(branch.getName())
@@ -18,15 +20,17 @@ public class BranchMapper {
                 .openTime(branch.getOpenTime())
                 .workingDays(branch.getWorkingDays())
                 .storeId(branch.getStore() != null ? branch.getStore().getId() : null)
-                .store(StoreMapper.toDto(branch.getStore()))
+                .store(branch.getStore() != null ? StoreMapper.toDto(branch.getStore()) : null)
                 .createdAt(branch.getCreatedAt())
                 .updatedAt(branch.getUpdatedAt())
-                .manager(branch.getManager()!=null?
-                        branch.getManager().getFullName():null)
+                .manager(branch.getManager() != null ? branch.getManager().getFullName() : null)
                 .build();
     }
 
     public static Branch toEntity(BranchDTO dto, Store store) {
+        if (dto == null) {
+            return null;
+        }
         return Branch.builder()
                 .id(dto.getId())
                 .name(dto.getName())
@@ -39,7 +43,6 @@ public class BranchMapper {
                 .workingDays(dto.getWorkingDays())
                 .createdAt(dto.getCreatedAt())
                 .updatedAt(dto.getUpdatedAt())
-
                 .build();
     }
 }

@@ -1,6 +1,7 @@
 package com.zosh.configrations;
 
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.http.HttpMethod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -29,7 +30,10 @@ public class SecurityConfig {
 		
 		return http.sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 				.authorizeHttpRequests(Authorize -> Authorize
+						.requestMatchers(HttpMethod.GET, "/api/super-admin/subscription-plans/**").permitAll()
+						.requestMatchers(HttpMethod.GET, "/api/subscription-plans/**").permitAll()
 						.requestMatchers("/api/super-admin/**").hasRole("ADMIN")
+						.requestMatchers("/api/subscription-plans/**").hasRole("ADMIN")
 						.requestMatchers("/api/chat/**").permitAll()
 						.requestMatchers("/api/**").authenticated()
 						.anyRequest().permitAll())
