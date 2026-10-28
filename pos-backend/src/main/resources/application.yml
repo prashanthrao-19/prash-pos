@@ -16,14 +16,20 @@ spring:
   mail:
     host: ${MAIL_HOST:smtp.gmail.com}
     port: ${MAIL_PORT:587}
-    username: ${MAIL_USERNAME:prashanthrao115@gmail.com}
-    password: ${MAIL_PASSWORD:doodiechinnu191246}
+    username: ${MAIL_USERNAME:neha.nj2424@gmail.com}
+    password: ${MAIL_PASSWORD:}
     properties:
       mail:
         smtp:
           auth: true
           starttls:
             enable: true
+            required: true
+          ssl:
+            trust: smtp.gmail.com
+          connectiontimeout: 5000
+          timeout: 5000
+          writetimeout: 5000
 
   devtools:
     livereload:
@@ -48,7 +54,7 @@ stripe:
 gemini:
   api:
     key: ${GEMINI_API_KEY:}
-    model: ${GEMINI_MODEL:gemini-3.8-flash}
+    model: ${GEMINI_MODEL:gemini-1.5-flash}
     url: ${GEMINI_API_URL:https://generativelanguage.googleapis.com/v1beta/models}
 
 app:
