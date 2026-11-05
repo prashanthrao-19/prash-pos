@@ -22,6 +22,9 @@ public class StripeService {
     @Value("${stripe.publishable.key:}")
     private String stripePublishableKey;
 
+    @Value("${stripe.api.webhook-secret:}")
+    private String stripeWebhookSecret;
+
 
     /**
      * Verify Stripe payment
@@ -94,6 +97,10 @@ public class StripeService {
      */
     public String getStripePublishableKey() {
         return stripePublishableKey;
+    }
+
+    public String getStripeWebhookSecret() {
+        return stripeWebhookSecret;
     }
 
     /**

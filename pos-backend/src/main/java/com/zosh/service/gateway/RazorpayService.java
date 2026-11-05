@@ -31,6 +31,9 @@ public class RazorpayService {
     @Value("${razorpay.api.secret}")
     private String razorpayKeySecret;
 
+    @Value("${razorpay.api.webhook-secret:}")
+    private String razorpayWebhookSecret;
+
     @Value("${razorpay.callback.base-url:http://localhost:5173}")
     private String callbackBaseUrl;
 
@@ -130,6 +133,10 @@ public class RazorpayService {
     public boolean isConfigured() {
         return razorpayKeyId != null && !razorpayKeyId.isEmpty()
                && razorpayKeySecret != null && !razorpayKeySecret.isEmpty();
+    }
+
+    public String getWebhookSecret() {
+        return razorpayWebhookSecret;
     }
 
     /**

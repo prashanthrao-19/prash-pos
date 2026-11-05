@@ -1,55 +1,19 @@
 spring:
   application:
     name: pos-system
-
-  datasource:
-    url: ${SPRING_DATASOURCE_URL:jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:nehapos}}
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    username: ${SPRING_DATASOURCE_USERNAME:${DB_USERNAME:root}}
-    password: ${SPRING_DATASOURCE_PASSWORD:${DB_PASSWORD:prashanth}}
-
-  jpa:
-    hibernate:
-      ddl-auto: update
-    show-sql: true
-
-  mail:
-    host: ${MAIL_HOST:smtp.gmail.com}
-    port: ${MAIL_PORT:587}
-    username: ${MAIL_USERNAME:neha.nj2424@gmail.com}
-    password: ${MAIL_PASSWORD:}
-    properties:
-      mail:
-        smtp:
-          auth: true
-          starttls:
-            enable: true
-            required: true
-          ssl:
-            trust: smtp.gmail.com
-          connectiontimeout: 5000
-          timeout: 5000
-          writetimeout: 5000
-
-  devtools:
-    livereload:
-      enabled: true
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:dev}
 
 server:
   port: ${PORT:5000}
 
-razorpay:
-  api:
-    key: ${RAZORPAY_API_KEY:rzp_test_TixyEprSNfs4Y9}
-    secret: ${RAZORPAY_API_SECRET:ebzNQAhvHZKnArMLmIUBKZpF}
-  callback:
-    base-url: ${FRONTEND_URL:https://prash-n6bme0eps-prashanths-projects-4b230579.vercel.app}
-
-stripe:
-  api:
-    key: ${STRIPE_API_KEY:provide your stripe api key}
-  publishable:
-    key: ${STRIPE_PUBLISHABLE_KEY:}
+app:
+  jwt:
+    secret: ${JWT_SECRET:asdfghjklpoiuytrewqzxcvbnmlkjhglpouhggfdsawqwertyyuiioplmnbvcxzasdfgh}
+    expiration-ms: ${JWT_EXPIRATION_MS:86400000}
+  frontend:
+    base-url: ${FRONTEND_URL:http://localhost:5173}
+    reset-url: ${FRONTEND_RESET_URL:${FRONTEND_URL:http://localhost:5173}/auth/reset-password?token=}
 
 gemini:
   api:
@@ -57,15 +21,5 @@ gemini:
     model: ${GEMINI_MODEL:gemini-1.5-flash}
     url: ${GEMINI_API_URL:https://generativelanguage.googleapis.com/v1beta/models}
 
-app:
-  frontend:
-    reset-url: ${FRONTEND_RESET_URL:${FRONTEND_URL:https://prash-n6bme0eps-prashanths-projects-4b230579.vercel.app}/auth/reset-password?token=}
-
-logging:
-  level:
-    org:
-      hibernate:
-        SQL: DEBUG
-        type:
-          descriptor:
-            sql: TRACE
+cors:
+  allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:3000,http://localhost:5173,http://localhost:5000}
